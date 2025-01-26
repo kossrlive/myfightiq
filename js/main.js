@@ -894,3 +894,44 @@ window.addEventListener('resize', () => {
         game.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 });
+
+// Back to menu button functionality
+document.getElementById('back-to-menu').addEventListener('click', () => {
+    // Hide multiplayer screen
+    document.getElementById('multiplayer-screen').classList.add('hidden');
+    // Show splash screen
+    document.getElementById('splash-screen').classList.remove('hidden');
+    
+    // Disconnect from server if connected
+    if (game.socket && game.socket.connected) {
+        game.socket.disconnect();
+    }
+    
+    // Reset multiplayer state
+    game.isMultiplayer = false;
+    game.playerId = null;
+    game.roomId = null;
+    game.players.clear();
+    
+    // Reset input fields
+    document.getElementById('player-name-input').value = '';
+    document.getElementById('room-id-input').value = '';
+    
+    // Reset ready button
+    document.getElementById('ready-button').disabled = true;
+    
+    // Clear player slots
+    document.querySelector('.player-slots').innerHTML = '';
+    
+    // Reset room ID display
+    document.getElementById('room-id').textContent = '...';
+    
+    // Reset join room button
+    const joinRoomButton = document.getElementById('join-room');
+    joinRoomButton.textContent = 'Join Room';
+    joinRoomButton.disabled = false;
+    
+    // Re-enable input fields
+    document.getElementById('player-name-input').disabled = false;
+    document.getElementById('room-id-input').disabled = false;
+});
