@@ -205,7 +205,7 @@ class Game {
 
     connectToServer() {
         // Initialize Socket.IO connection
-        this.socket = io('http://localhost:8080', {
+        this.socket = io('https://myfightiq.vercel.app/api/sever:8080', {
             reconnectionDelayMax: 10000,
             reconnection: true
         });
