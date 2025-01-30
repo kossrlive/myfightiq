@@ -205,7 +205,7 @@ class Game {
 
     connectToServer() {
         // Initialize Socket.IO connection
-        this.socket = io('http://api.myfightiq.online:80', {
+        this.socket = io('https://api.myfightiq.online', {
             reconnectionDelayMax: 10000,
             reconnection: true
         });
